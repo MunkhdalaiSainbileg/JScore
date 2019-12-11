@@ -50,8 +50,9 @@ class HashTable {
     const key = this._hash(keyname);
     const currentaddress = this.data[key];
         for(let element of currentaddress){
-           if(element.key === key){
-             return element.value;
+          console.log(element)
+           if(element[0] === key){
+             return element[1];
            }
         } 
       return undefined;
@@ -59,14 +60,44 @@ class HashTable {
       //     return element.value;
       // }
       // return '';
-    }
+  }
+  
 
 }
 
-const myHashTable = new HashTable(2);
-myHashTable.set('grapes', 10000)
-myHashTable.set('apples', 45)
-myHashTable.set('oranges', 34)
-myHashTable.get('grapes')
+// const myHashTable = new HashTable(50);
+// myHashTable.set('grapes', 10000)
+// myHashTable.set('apples', 45)
+// myHashTable.set('oranges', 34)
+// myHashTable.get('grapes')
 // myHashTable.set('apples', 9)
 // myHashTable.get('apples')
+
+const array =[1,2,3,5,2,3];
+
+function checker(paramarray){
+  let isfounded = paramarray.length;
+  let checked = [];
+  for(let i=0; i<isfounded; i++){
+    let param = paramarray[i]; 
+    if(checked.length >0){
+        let found= false;
+        for(let k=0; k<checked.length; k++){
+          if(param === checked[k]) {
+            found = true;
+          } 
+        }
+        if(found){
+          return param;
+        } else {
+          checked.push(param);
+        }
+    } else {
+      checked.push(param);
+    }
+    console.log(checked);
+  }
+  return undefined;
+}
+
+checker(array);
