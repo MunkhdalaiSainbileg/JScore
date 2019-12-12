@@ -100,4 +100,47 @@ function checker(paramarray){
   return undefined;
 }
 
-checker(array);
+// checker(array);
+
+class LinkedList {
+  constructor(value) {
+    this.head = {
+      value: value,
+      next: null
+    };
+    this.tail = this.head;
+    this.length = 1;
+  }
+  append(value) { 
+    let next = this.head.next;
+    if(next === null){
+        next = {
+          value: value,
+          next: null
+        }
+        this.head.next = next;
+        this.tail = next;
+        
+    } else {
+      for(let newnext of next){
+        if(newnext==null){
+          next = {
+            value: value,
+            next: null
+          }
+          this.tail = next;
+        }
+      }
+      this.length++;
+    }
+    
+    this.head.next = {
+       value: value, 
+       next:null
+    };
+  }
+}
+
+let myLinkedList = new LinkedList(10);
+myLinkedList.append(5);
+myLinkedList.append(16);
