@@ -112,35 +112,93 @@ class LinkedList {
     this.length = 1;
   }
   append(value) { 
-    let next = this.head.next;
-    if(next === null){
-        next = {
-          value: value,
-          next: null
-        }
-        this.head.next = next;
-        this.tail = next;
-        
-    } else {
-      for(let newnext of next){
-        if(newnext==null){
-          next = {
-            value: value,
-            next: null
-          }
-          this.tail = next;
-        }
+      const node = {
+        value: value,
+        next: null
+      }
+      this.tail.next = node;
+      this.tail = node;
+      this.length++;
+      return this;
+    } 
+
+    prepend(value){
+      const node = {
+        value: value,
+        next: this.head
       }
       this.length++;
+      return this;
+    }
+
+    printList(){
+      let array = [];
+      let next = this.head.next;
+      while(next!==null){
+        array.push(next.value);
+        next = next.next;
+      }
+      return array;
     }
     
-    this.head.next = {
-       value: value, 
-       next:null
-    };
-  }
+    insert(index, value){
+      let newNode = {
+       value: value,
+       next: null
+      }
+      let leaderNode = traverseIndex(index);
+      leaderNode = newNode;
+      let followingNode = leaderNode.next;
+      leaderNode.next = followingNode;
+      return this;
+    }
+
+    traverseIndex(index){
+      let counter =0;
+      let currentnode = this.head;
+      while(counter!==index){
+        currentnode = currentnode.next;
+        counter++;
+      }
+      return currentnode;
+    }
+    
+    // if(next === null){
+    //     next = {
+    //       value: value,
+    //       next: null
+    //     }
+    //     this.head.next = next;
+    //     this.tail = next;
+    //     this.length++;
+    //     // console.log(this);
+    // } else {
+    //   console.log(next);
+      
+    //   for(let newnext of next){
+    //     console.log(next);
+    //     if(newnext==null){
+    //       next = {
+    //         value: value,
+    //         next: null
+    //       }
+    //       this.tail = next;
+    //     }
+    //   }
+    
+    // }
+    
+    // this.head.next = {
+    //    value: value, 
+    //    next:null
+    // };
 }
 
 let myLinkedList = new LinkedList(10);
-myLinkedList.append(5);
+myLinkedList.append(45);
+myLinkedList.append(78);
 myLinkedList.append(16);
+myLinkedList.traverseIndex(2, 00);
+
+
+
