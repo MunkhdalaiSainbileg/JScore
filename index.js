@@ -146,10 +146,11 @@ class LinkedList {
        value: value,
        next: null
       }
-      let leaderNode = traverseIndex(index);
-      leaderNode = newNode;
+      let leaderNode = this.traverseIndex(index-1);
       let followingNode = leaderNode.next;
-      leaderNode.next = followingNode;
+      newNode.next = followingNode;
+      leaderNode.next = leaderNode;
+      this.length++;
       return this;
     }
 
@@ -163,42 +164,15 @@ class LinkedList {
       return currentnode;
     }
     
-    // if(next === null){
-    //     next = {
-    //       value: value,
-    //       next: null
-    //     }
-    //     this.head.next = next;
-    //     this.tail = next;
-    //     this.length++;
-    //     // console.log(this);
-    // } else {
-    //   console.log(next);
-      
-    //   for(let newnext of next){
-    //     console.log(next);
-    //     if(newnext==null){
-    //       next = {
-    //         value: value,
-    //         next: null
-    //       }
-    //       this.tail = next;
-    //     }
-    //   }
-    
-    // }
-    
-    // this.head.next = {
-    //    value: value, 
-    //    next:null
-    // };
+   
 }
 
 let myLinkedList = new LinkedList(10);
 myLinkedList.append(45);
 myLinkedList.append(78);
 myLinkedList.append(16);
-myLinkedList.traverseIndex(2, 00);
+//myLinkedList.printList();
+myLinkedList.insert(1, 22);
 
 
 
