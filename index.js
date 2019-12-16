@@ -188,6 +188,24 @@ class LinkedList {
       return currentnode;
     }
     
+    reverse(){
+      if(this.length ==1){
+        return this.head;
+      }
+      this.tail = this.head;
+      let firstNode = this.head;
+      let secondNode = this.head.next;
+      while (secondNode){
+         let temp = secondNode.next;
+         secondNode.next = firstNode;
+         firstNode = secondNode;
+         secondNode = temp;
+      }
+      this.head.next = null;
+      this.head = firstNode;
+      return this.printList();
+    }
+    
    
 }
 
@@ -196,7 +214,7 @@ myLinkedList.append(45);
 myLinkedList.append(78);
 myLinkedList.append(16);
 //myLinkedList.printList();
-myLinkedList.remove(2);
+myLinkedList.reverse();
 
 
 
