@@ -123,37 +123,61 @@ class LinkedList {
     } 
 
     prepend(value){
-      const node = {
-        value: value,
-        next: this.head
+      const newNode = {
+      value: value,
+      next: null
       }
+      newNode.next = this.head;
+      this.head = newNode;
       this.length++;
       return this;
     }
 
     printList(){
-      let array = [];
-      let next = this.head.next;
-      while(next!==null){
-        array.push(next.value);
-        next = next.next;
+      const array = [];
+      let node = this.head;
+      while(node!==null){
+        array.push(node.value);
+        node = node.next;
       }
       return array;
     }
     
     insert(index, value){
+      //Check for proper parameters;
+      if(index >= this.length) {
+        console.log('yes')
+        return this.append(value);
+      }
+
       let newNode = {
        value: value,
        next: null
       }
-      let leaderNode = this.traverseIndex(index-1);
-      let followingNode = leaderNode.next;
+      const leaderNode = this.traverseIndex(index-1);
+      const followingNode = leaderNode.next;
       newNode.next = followingNode;
       leaderNode.next = leaderNode;
       this.length++;
-      return this;
+      return this.printList();
     }
-
+    
+    remove(index){
+      //Check for proper parameters;
+      if(index >= this.length) {
+        console.log('yes')
+        return this.append(value);
+      }
+      
+      let leaderNode = this.traverseIndex(index-1);
+      const targetedNode = leaderNode.next;
+      let followingNode = targetedNode.next;
+      leaderNode.next = followingNode;
+      this.length--;
+      
+      return this.printList();
+    }
+ 
     traverseIndex(index){
       let counter =0;
       let currentnode = this.head;
@@ -172,7 +196,7 @@ myLinkedList.append(45);
 myLinkedList.append(78);
 myLinkedList.append(16);
 //myLinkedList.printList();
-myLinkedList.insert(1, 22);
+myLinkedList.remove(2);
 
 
 
