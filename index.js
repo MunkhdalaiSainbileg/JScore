@@ -209,12 +209,111 @@ class LinkedList {
    
 }
 
-let myLinkedList = new LinkedList(10);
-myLinkedList.append(45);
-myLinkedList.append(78);
-myLinkedList.append(16);
-//myLinkedList.printList();
-myLinkedList.reverse();
+// let myLinkedList = new LinkedList(10);
+// myLinkedList.append(45);
+// myLinkedList.append(78);
+// myLinkedList.append(16);
+// myLinkedList.printList();
+// myLinkedList.reverse();
 
+class Node {
+  constructor(value){
+    this.value = value;
+    this.next = null;
+  }
+}
 
+class Stack {
+  constructor(){
+    this.top = null;
+    this.bottom =null;
+    this.length =0; 
+  }
+  
+  peek(){
+    return this.top;
+  }
 
+  pop(){
+    if(this.length === 0){
+      return undefined;
+    }
+    if(this.top === this.bottom){
+      this.bottom = null;
+    }
+    const temp = this.top.next;
+    this.top = temp;
+    this.length --;
+    return this;
+  }
+  
+  push(value){
+     const newnode  = new Node(value);
+     if(this.length ===0){
+       this.top = newnode;
+       this.bottom = newnode;
+     } else {
+       const temp = this.top;
+       this.top = newnode;
+       this.top.next = temp;
+     }
+     this.length ++; 
+     return this;
+  }
+}
+
+// const stack = new Stack();
+// //stack.peek();
+// stack.push('google');
+// stack.pop();
+
+class Queue {
+  constructor(){
+    this.first = null;
+    this.last =null;
+    this.length =0; 
+  }
+  
+  peek(){
+    return this.first;
+  }
+
+  dequeue(){
+    if(this.length === 0){
+      return undefined;
+    }
+    if(this.first === this.last){
+      this.last = null;
+      return null;
+    }
+    this.last = this.last.next;
+    this.length --;
+    return this;
+  }
+  
+  enqueue(value){
+     const newnode  = new Node(value);
+     if(this.length ===0){
+       this.first = newnode;
+       this.last = newnode;
+     } else {
+       const temp = this.last;
+       this.last = newnode;
+       this.last.next = temp;
+     }
+     this.length ++; 
+     return this;
+  }
+}
+
+const queue = new Queue();
+queue.peek();
+queue.enqueue('Paul');
+queue.enqueue('Serguei');
+queue.enqueue('Van Mark');
+
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+//stack.push('google');
+//stack.pop();
